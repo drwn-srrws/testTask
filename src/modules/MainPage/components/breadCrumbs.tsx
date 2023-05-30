@@ -14,19 +14,18 @@ export default function CustomSeparator() {
 
   return (
     <StyledStack spacing={2}>
-      <Breadcrumbs
-        separator={<NavigateNextIcon fontSize="small" />}
+      <StyledBreadcrumbs
+        separator={<NavigateNextIcon fontSize="medium" />}
         aria-label="breadcrumb"
       >
         {breadcrumbs}
-      </Breadcrumbs>
+      </StyledBreadcrumbs>
     </StyledStack>
   );
 }
 const StyledLink = styled(Link)({
   textDecoration: "none",
   fontFamily: "Lato",
-  fontStyle: "normal",
   fontWeight: "400",
   fontSize: "16px",
   lineHeight: "19px",
@@ -34,14 +33,18 @@ const StyledLink = styled(Link)({
 });
 const StyledTypography = styled(Typography)({
   fontFamily: "Lato",
-  fontStyle: "normal",
   fontWeight: "400",
   fontSize: "16px",
-  lineHeight: "19px",
   color: "#9499A8",
-  order: "4",
 });
 
 const StyledStack = styled(Stack)({
   margin: "25px 0px",
+});
+
+const StyledBreadcrumbs = styled(Breadcrumbs)({
+  "& .MuiBreadcrumbs-separator": {
+    marginLeft: "4px",
+    marginRight: "1px",
+  },
 });

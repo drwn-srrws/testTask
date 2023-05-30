@@ -1,8 +1,39 @@
-import { Button, styled } from "@mui/material";
+import { Button, Typography, styled } from "@mui/material";
 import { NounBedroom } from "../svg/nounBedroom";
 import CustomChip from "../../../components/styledChip/StyledChip";
 import HouseOnHand from "../svg/houseOnHand";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+
+const Icons = [
+  {
+    icon: <NounBedroom />,
+    text: "4",
+  },
+  {
+    icon: <NounBedroom />,
+    text: "3+1",
+  },
+  {
+    icon: <NounBedroom />,
+    text: "1",
+  },
+  {
+    icon: <NounBedroom />,
+    text: "2",
+  },
+  {
+    icon: <NounBedroom />,
+    text: "19.98 x 100.4 ft",
+  },
+  {
+    icon: <NounBedroom />,
+    text: "2500-3500 sqft",
+  },
+  {
+    icon: <NounBedroom />,
+    text: "Semi-Detached",
+  },
+];
 
 const Description = () => {
   return (
@@ -21,34 +52,19 @@ const Description = () => {
               <GreyText>MLS: N5846678 </GreyText>
             </OnMarketWrapper>
             <AddressCostWrapper>
-              <AdressCostText>York, Oak Ridges Lake Wilcox</AdressCostText>
+              <AdressText>York, Oak Ridges Lake Wilcox</AdressText>
               <AdressCostText>$1,688,000</AdressCostText>{" "}
             </AddressCostWrapper>
             <AdditionalAddress>
               Near Yonge/Stouffville Rd, 22 Sunset Beach Rd
             </AdditionalAddress>
             <DescriptionIconWrapper>
-              <IconWrapper>
-                <NounBedroom /> <IconText>4</IconText>
-              </IconWrapper>
-              <IconWrapper>
-                <NounBedroom /> <IconText>3+1</IconText>
-              </IconWrapper>
-              <IconWrapper>
-                <NounBedroom /> <IconText>1</IconText>
-              </IconWrapper>
-              <IconWrapper>
-                <NounBedroom /> <IconText>2</IconText>
-              </IconWrapper>
-              <IconWrapper>
-                <NounBedroom /> <IconText>19.98 x 100.4 ft</IconText>
-              </IconWrapper>
-              <IconWrapper>
-                <NounBedroom /> <IconText>2500-3500 sqft</IconText>
-              </IconWrapper>
-              <IconWrapper>
-                <NounBedroom /> <IconText>Semi-Detached</IconText>
-              </IconWrapper>
+              {Icons.map((item) => (
+                <IconWrapper key={item.text}>
+                  {item.icon}
+                  <IconText>{item.text}</IconText>
+                </IconWrapper>
+              ))}
             </DescriptionIconWrapper>
             <TourButton>Take Virtual Tour</TourButton>
             <Line></Line>
@@ -107,10 +123,12 @@ const OuterWrapper = styled("div")({
   padding: "32px 0px 0px 0px",
 });
 const LeftWrapper = styled("div")({});
+
 const MatchedWishedTitleWrapper = styled("div")({
   display: "flex",
-  justifyContent:"space-between"
+  justifyContent: "space-between",
 });
+
 const ParkingsWrapper = styled("div")({});
 
 const AgentText = styled("div")({
@@ -125,14 +143,13 @@ const StyledImg = styled("img")({
   margin: "0px 10px 0px 20px",
 });
 
-const WhatsappTitle = styled("div")({
-  fontFamily: "Abhaya Libre",
-  fontWeight: "700",
+const WhatsappTitle = styled("div")(({ theme }) => ({
+  ...theme.typography.body1,
   fontSize: "24px",
   lineHeight: " 28px",
   letterSpacing: "-0.02em",
   color: "#202A44",
-});
+}));
 
 const MessageWrapper = styled("div")({
   margin: "16px 0px 11px 0px",
@@ -159,15 +176,14 @@ const Line = styled("div")({
   margin: "0px 0px 32px 0px",
 });
 
-const PictureTitle = styled("div")({
+const PictureTitle = styled("div")(({ theme }) => ({
+  ...theme.typography.body1,
   margin: "33px 0px 32px 0px",
-  fontFamily: "Abhaya Libre",
-  fontWeight: "700",
   fontSize: "32px",
   lineHeight: "38px",
   letterSpacing: "-0.02em",
   color: "#202A44",
-});
+}));
 
 const ExposureWrapper = styled("div")({
   margin: "0px 0px 0px 24px",
@@ -199,21 +215,24 @@ const MatchedWishedSubTitle = styled("div")({
   color: " #202A44",
 });
 
-const StartChat = styled(Button)({
+const StartChat = styled(Button)(({ theme }) => ({
   margin: "0px 0px 27px 0px",
   boxSizing: "border-box",
   padding: "11px 16px 12px",
   background: "#54CC61",
   borderRadius: "50px",
   color: "white",
-  textDecoration: "none",
-  fontFamily: "Lato",
-  fontStyle: "normal",
-  fontWeight: "700",
-  fontSize: "16px",
-  lineHeight: "19px",
-  textTransform: "none",
-});
+  ...theme.typography.button,
+
+  "&:hover": {
+    background: "#43a34d ",
+    boxShadow: "0px 2px 4px #43a34d ",
+  },
+  "&:active": {
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+    background: "#98e0a0 ", // Можете изменить на нужный вам цвет синего
+  },
+}));
 
 const Container = styled("div")({
   display: "flex",
@@ -264,10 +283,10 @@ const ChipMarket = styled("div")({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  padding: "11px 16px 9px",
+  padding: "8px 12px 9px",
   margin: "0px 20px 0px 0px",
   gap: "10px",
-  width: "128px",
+  width: "130px",
   height: "36px",
   background: "#54CC61",
   borderRadius: "50px",
@@ -280,14 +299,15 @@ const Dot = styled("div")({
   borderRadius: "10px",
 });
 
-const Text = styled("div")({
+const Text = styled(Typography)(({ theme }) => ({
   color: "white",
-});
+  ...theme.typography.button,
+}));
 
 const PictureWrapper = styled("div")({
-  maxWidth: "300px",
+  maxWidth: "280px",
   width: "100%",
-  margin: "70px 0px 0px 60px",
+  margin: "60px 0px 0px 70px",
 });
 
 const GreyText = styled("div")({
@@ -298,46 +318,49 @@ const GreyText = styled("div")({
   lineHeight: "19px",
   color: "#9499A8",
 });
-const AdressCostText = styled("div")({
-  fontFamily: "Abhaya Libre",
-  fontStyle: "normal",
-  fontWeight: "700",
-  fontSize: "32px",
+const AdressCostText = styled("div")(({ theme }) => ({
+  ...theme.typography.body1,
+  fontSize: "36px",
   lineHeight: "38px",
-  /* identical to box height */
-
   letterSpacing: "-0.02em",
   color: "#202A44",
-});
+}));
+
+const AdressText = styled("div")(({ theme }) => ({
+  ...theme.typography.body1,
+  fontSize: "32px",
+  lineHeight: "38px",
+  letterSpacing: "-0.02em",
+  color: "#202A44",
+}));
 
 const IconWrapper = styled("div")({
   display: "flex",
+  alignItems: "center",
 });
 
-const IconText = styled("div")({
-  margin: "0px 27px 0px 8px",
-  fontFamily: "Lato",
-  fontStyle: "normal",
-  fontWeight: "700",
-  fontSize: "16px",
-  lineHeight: "19px",
+const IconText = styled("div")(({ theme }) => ({
+  margin: "0px 27px 0px 9px",
   color: "#202A44",
-});
+  ...theme.typography.button,
+}));
 
-const TourButton = styled(Button)({
+const TourButton = styled(Button)(({ theme }) => ({
   margin: "36px 0px 26px 0px",
   boxSizing: "border-box",
-  width: "152px",
-  height: "42px",
   padding: "11px 16px 12px",
   gap: "1px",
   background: "#F1AE0F",
   borderRadius: "50px",
   color: "white",
-  fontFamily: "Lato",
-  fontStyle: "normal",
-  fontWeight: "700",
-  fontSize: "16px",
-  lineHeight: "19px",
-  textTransform: "none",
-});
+  ...theme.typography.button,
+
+  "&:hover": {
+    background: "#c08b0c", // Измените на нужный вам цвет при наведении
+    boxShadow: "0px 2px 4px #c08b0c",
+  },
+  "&:active": {
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+    background: "#F1AE0F", // Можете изменить на нужный вам цвет синего
+  },
+}));

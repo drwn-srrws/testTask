@@ -1,4 +1,4 @@
-import { Button, Link, styled } from "@mui/material";
+import { Button, Link, Typography, styled } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { useState, useEffect } from "react";
@@ -88,33 +88,37 @@ const LinksWrapper = styled("div")({
   display: "flex",
 });
 
-const AuthorizationWrapper = styled("div")({});
+const AuthorizationWrapper = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  minWidth: "155px",
+});
 
-const StyledLink = styled(Link)({
-  fontFamily: "Lato",
-  fontWeight: "700",
-  fontSize: "16px",
-  lineHeight: "19px",
+const StyledLink = styled(Typography)(({ theme }) => ({
   color: "#202A44",
   textDecoration: "none",
   cursor: "pointer",
-});
+  ...theme.typography.button, // Применение стилей шрифта
+}));
 
-const RegisterButton = styled(Button)({
+const RegisterButton = styled(Button)(({ theme }) => ({
   margin: "0px 0px 0px 18px",
   boxSizing: "border-box",
   padding: "11px 16px 12px",
   background: "#F1AE0F",
   borderRadius: "50px",
   color: "white",
-  textDecoration: "none",
-  fontFamily: "Lato",
-  fontStyle: "normal",
-  fontWeight: "700",
-  fontSize: "16px",
-  lineHeight: "19px",
-  textTransform: "none",
-});
+  ...theme.typography.button,
+
+  "&:hover": {
+    background: "#c08b0c", // Измените на нужный вам цвет при наведении
+    boxShadow: "0px 2px 4px #c08b0c",
+  },
+  "&:active": {
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+    background: "#F1AE0F", // Можете изменить на нужный вам цвет синего
+  },
+}));
 
 const Container = styled("div")({
   display: "flex",

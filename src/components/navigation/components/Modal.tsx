@@ -32,18 +32,22 @@ const BasicModal: FC<BasicModalProps> = ({ open, setOpen }) => {
             </TitleWrapper>
             <TextFieldName>Email or username</TextFieldName>
             <StyledTextField
+              placeholder="Enter your email here"
               onChange={(e) => {
                 setLogin({ ...login, login: e.target.value });
               }}
             />
             <TextFieldName>Password</TextFieldName>
             <StyledTextField
+              placeholder="Enter your password here"
               onChange={(e) => {
                 setLogin({ ...login, password: e.target.value });
               }}
             />
             {isLoading ? (
-              <StyledCircularProgress />
+              <CircularProgressWrapper>
+                <StyledCircularProgress />
+              </CircularProgressWrapper>
             ) : (
               <StyledButton onClick={handleLoginClick}>Log In</StyledButton>
             )}
@@ -54,13 +58,12 @@ const BasicModal: FC<BasicModalProps> = ({ open, setOpen }) => {
   );
 };
 
-const Title = styled(Typography)({
-  font: "Abhaya Libre",
+const Title = styled(Typography)(({ theme }) => ({
+  ...theme.typography.body1,
   fontSize: "32px",
-  fontWeight: "700",
   lineHeight: "38px",
   letterSpacing: "-0.02em",
-});
+}));
 const TextFieldName = styled(Typography)({
   fontFamily: "Lato",
   fontSize: "14px",
@@ -78,31 +81,35 @@ const StyledBox = styled(Box)({
   left: "50%",
   transform: "translate(-50%, -50%)",
   background: "white",
+  outline: "none",
 });
-
 const Container = styled("div")({
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
   maxWidth: "350px",
   width: "100%",
   margin: "0 auto",
 });
 
-const StyledTextField = styled(TextField)({
+const StyledTextField = styled(TextField)(({ theme }) => ({
   width: "348px",
   marginBottom: "25px",
+
+  "& .MuiInputBase-input": {
+    ...theme.typography.button,
+    fontWeight: "400",
+  },
 
   "& .MuiOutlinedInput-root": {
     borderRadius: "10px",
   },
-});
+}));
 
 const TitleWrapper = styled("div")({
   margin: "45px 0px 39px 0px",
 });
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: "50px",
   display: "flex",
   flexDirection: "row",
@@ -115,14 +122,13 @@ const StyledButton = styled(Button)({
   background: "#F1AE0F",
   borderRadius: "50px",
   color: "white",
-  fontFamily: "Lato",
-  fontStyle: "normal",
-  fontWeight: "700",
-  fontSize: "16px",
-  lineHeight: "19px",
-  textTransform: "none",
-});
+  ...theme.typography.button,
+}));
 const StyledCircularProgress = styled(CircularProgress)({
   marginTop: "50px",
+});
+
+const CircularProgressWrapper = styled("div")({
+  margin: "0 auto",
 });
 export default BasicModal;
