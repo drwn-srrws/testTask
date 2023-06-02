@@ -1,4 +1,5 @@
-import { Button, Link, styled } from "@mui/material";
+import { styled } from "@mui/material";
+import Button from "../../../components/Button/Button";
 const pictures = [
   "/images/Gallery/Rectangle22.png",
   "/images/Gallery/Rectangle23.png",
@@ -22,7 +23,9 @@ const Gallery = () => {
             ) : (
               <PictureButtonViewWrapper key={index}>
                 <StyledImg src={picture} alt="/" key={index} />
-                <ButtonView>View All Photos (33)</ButtonView>
+                <ButtonView color="transparent">
+                  View All Photos (33)
+                </ButtonView>
               </PictureButtonViewWrapper>
             )
           )}
@@ -44,28 +47,18 @@ const PicturesWrapper = styled("div")({
   margin: "0 auto",
   display: "flex",
   flexWrap: "wrap",
+  gap: "8px 10px",
 });
 const StyledImg = styled("img")({
   width: "226px",
   height: "226px",
-  margin: "0px 10px 6px 0px",
 });
 const ButtonView = styled(Button)({
   position: "absolute",
   bottom: "20px",
   right: "36px",
-  width: "158px",
-  height: "36px",
-  background: "rgba(255, 255, 255, 0.2)",
-  borderRadius: "50px",
-  backdropFilter: "blur(7.5px)",
-  fontFamily: "Lato",
-  //fontStyle: "normal",
-  //fontWeight: " 700",
   fontSize: "14px",
   lineHeight: "17px",
-  color: "#FFFFFF",
-  textTransform: "none",
 });
 
 const PictureButtonViewWrapper = styled("div")({

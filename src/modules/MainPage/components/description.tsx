@@ -1,8 +1,9 @@
-import { Button, Typography, styled } from "@mui/material";
+import { Typography, styled } from "@mui/material";
 import { NounBedroom } from "../../../components/Icons/nounBedroom";
 import HouseOnHand from "../../../components/Icons/houseOnHand";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import CustomChip from "../../../components/StyledChip/StyledChip";
+import Button from "../../../components/Button/Button";
 
 const Icons = [
   {
@@ -45,7 +46,9 @@ const Description = () => {
               <ChipAddDataWrapper>
                 <ChipMarket>
                   <Dot></Dot>
-                  <Text>On Market</Text>
+                  <Typography variant="body1" color="textColor.light">
+                    On Market
+                  </Typography>
                 </ChipMarket>
                 <GreyText>Listed 5 days ago</GreyText>
               </ChipAddDataWrapper>
@@ -66,7 +69,7 @@ const Description = () => {
                 </IconWrapper>
               ))}
             </DescriptionIconWrapper>
-            <TourButton>Take Virtual Tour</TourButton>
+            <Button>Take Virtual Tour</Button>
             <Line></Line>
           </DescriptionWrapper>
           <MatchedWishesWrapper>
@@ -109,7 +112,7 @@ const Description = () => {
             <StyledImg src="/images/description/whatsapp.png" alt="111" />
             <MessageText>I've a question about this deal</MessageText>
           </MessageWrapper>
-          <StartChat>Start Chat</StartChat>
+          <Button color="secondary">Start Chat</Button>
           <AgentText>
             <strong>Agent:</strong> Ambrose Choy, Landpower Real Estate Ltd.
           </AgentText>
@@ -241,8 +244,6 @@ const Container = styled("div")({
   margin: "0 auto",
 });
 
-export default Description;
-
 const DescriptionWrapper = styled("div")({});
 
 const OnMarketWrapper = styled("div")({
@@ -364,3 +365,5 @@ const TourButton = styled(Button)(({ theme }) => ({
     background: "#F1AE0F", // Можете изменить на нужный вам цвет синего
   },
 }));
+
+export default Description;

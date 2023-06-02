@@ -1,4 +1,4 @@
-import { Button, Link, Typography, styled } from "@mui/material";
+import { Link, Typography, styled } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { useState, useEffect } from "react";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store/store";
 import { logout } from "../../redux/actions/userActions";
 import BasicModal from "../Popups/LoginModal";
+import Button from "../Button/Button";
 
 const NAV_LINKS = [
   {
@@ -37,18 +38,24 @@ const Navigation = () => {
         <LinksWrapper>
           {NAV_LINKS.map((item) => (
             <LinkMenuWrapper key={item.text}>
-              <StyledLink sx={styles.link}>{item.text}</StyledLink>
-              {item.hasDropdown && <ExpandMoreIcon sx={styles.moreIcon} />}
+              <StyledLink variant="body1" color="textColor.main">
+                {item.text}
+              </StyledLink>
+              {item.hasDropdown && <StyledExpandMoreIcon />}
             </LinkMenuWrapper>
           ))}
         </LinksWrapper>
         <AuthorizationWrapper>
           {isAuthorized ? (
-            <StyledLink onClick={() => dispatch(logout())}>Log Out</StyledLink>
+            <Button variant="text" onClick={() => dispatch(logout())}>
+              Log Out
+            </Button>
           ) : (
             <>
-              <StyledLink onClick={handleModalOpen}>Log In</StyledLink>
-              <RegisterButton>Register</RegisterButton>{" "}
+              <Button variant="text" onClick={handleModalOpen}>
+                Log In
+              </Button>
+              <Button>Register</Button>{" "}
             </>
           )}
         </AuthorizationWrapper>
@@ -60,20 +67,15 @@ const Navigation = () => {
 
 export default Navigation;
 
-const styles = {
-  link: {
-    margin: "0px 0px 0px 35px",
+const StyledExpandMoreIcon = styled(ExpandMoreIcon)(({ theme }) => ({
+  width: "30px",
+  height: "20px",
+  margin: "3px 0px 0px 0px",
+  "& path": {
+    fill: theme.palette.primary.main,
   },
-  moreIcon: {
-    width: "30px",
-    height: "20px",
-    margin: "3px 0px 0px 0px",
-    "& path": {
-      fill: "#202A44",
-    },
-    cursor: "pointer",
-  },
-};
+  cursor: "pointer",
+}));
 
 const OuterWrapper = styled("div")({
   height: "64px",
@@ -92,31 +94,11 @@ const AuthorizationWrapper = styled("div")({
   minWidth: "155px",
 });
 
-const StyledLink = styled(Typography)(({ theme }) => ({
-  color: "#202A44",
+const StyledLink = styled(Typography)({
   textDecoration: "none",
   cursor: "pointer",
-  ...theme.typography.button, // Применение стилей шрифта
-}));
-
-const RegisterButton = styled(Button)(({ theme }) => ({
-  margin: "0px 0px 0px 18px",
-  boxSizing: "border-box",
-  padding: "11px 16px 12px",
-  background: "#F1AE0F",
-  borderRadius: "50px",
-  color: "white",
-  ...theme.typography.button,
-
-  "&:hover": {
-    background: "#c08b0c", // Измените на нужный вам цвет при наведении
-    boxShadow: "0px 2px 4px #c08b0c",
-  },
-  "&:active": {
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
-    background: "#F1AE0F", // Можете изменить на нужный вам цвет синего
-  },
-}));
+  margin: "0px 0px 0px 35px",
+});
 
 const Container = styled("div")({
   display: "flex",
