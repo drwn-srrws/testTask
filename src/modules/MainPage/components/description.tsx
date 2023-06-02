@@ -2,7 +2,6 @@ import { Typography, styled } from "@mui/material";
 import { NounBedroom } from "../../../components/Icons/nounBedroom";
 import HouseOnHand from "../../../components/Icons/houseOnHand";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import CustomChip from "../../../components/StyledChip/StyledChip";
 import Button from "../../../components/Button/Button";
 import ChipsBlock from "../../../components/ChipsBlock/ChipsBlock";
 
