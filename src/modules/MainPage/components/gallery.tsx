@@ -17,18 +17,10 @@ const Gallery = () => {
     <OuterWrapper>
       <Container>
         <PicturesWrapper>
-          {pictures.map((picture, index) =>
-            index !== pictures.length - 1 ? (
-              <StyledImg src={picture} alt="/" key={index} />
-            ) : (
-              <PictureButtonViewWrapper key={index}>
-                <StyledImg src={picture} alt="/" key={index} />
-                <ButtonView color="transparent">
-                  View All Photos (33)
-                </ButtonView>
-              </PictureButtonViewWrapper>
-            )
-          )}
+          {pictures.map((picture, index) => (
+            <StyledImg src={picture} alt="/" key={index} />
+          ))}
+          <ButtonView color="transparent">View All Photos (33)</ButtonView>
         </PicturesWrapper>
       </Container>
     </OuterWrapper>
@@ -37,12 +29,13 @@ const Gallery = () => {
 const OuterWrapper = styled("div")({});
 
 const Container = styled("div")({
-  maxWidth: "1200px",
+  maxWidth: "1170px",
   width: "100%",
   margin: "0 auto",
 });
 const PicturesWrapper = styled("div")({
-  maxWidth: "1200px",
+  position: "relative",
+  maxWidth: "1170px",
   width: "100%",
   margin: "0 auto",
   display: "flex",
@@ -61,9 +54,4 @@ const ButtonView = styled(Button)({
   lineHeight: "17px",
 });
 
-const PictureButtonViewWrapper = styled("div")({
-  position: "relative",
-  width: "226px",
-  height: "226px",
-});
 export default Gallery;

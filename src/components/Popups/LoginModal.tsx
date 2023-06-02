@@ -1,4 +1,4 @@
-import Button from "@mui/material/Button";
+import Button from "../Button/Button";
 import Typography from "@mui/material/Typography";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { TextField, styled } from "@mui/material";
@@ -32,15 +32,21 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
     <PopupLayout open={open} setOpen={setOpen}>
       <Container>
         <TitleWrapper>
-          <Title>Sign in</Title>
+          <Typography variant="pageTitle" color="textColor.main">
+            Sign in
+          </Typography>
         </TitleWrapper>
-        <TextFieldName>Email or username</TextFieldName>
+        <TextFieldName variant="body1" color="textColor.main">
+          Email or username
+        </TextFieldName>
         <StyledTextField
           placeholder="Enter your email here"
           name="login"
           onChange={handleFieldChange}
         />
-        <TextFieldName>Password</TextFieldName>
+        <TextFieldName variant="body1" color="textColor.main">
+          Password
+        </TextFieldName>
         <StyledTextField
           placeholder="Enter your password here"
           name="password"
@@ -58,16 +64,8 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
   );
 };
 
-const Title = styled(Typography)(({ theme }) => ({
-  ...theme.typography.body1,
-  fontSize: "32px",
-  lineHeight: "38px",
-  letterSpacing: "-0.02em",
-}));
 const TextFieldName = styled(Typography)({
-  fontFamily: "Lato",
   fontSize: "14px",
-  fontWeight: "700",
   lineHeight: "17px",
   marginBottom: "10px",
 });
@@ -83,10 +81,14 @@ const Container = styled("div")({
 const StyledTextField = styled(TextField)(({ theme }) => ({
   width: "348px",
   marginBottom: "25px",
+  color: "rgba(32, 42, 68, 0.29)",
 
   "& .MuiInputBase-input": {
-    ...theme.typography.button,
-    fontWeight: "400",
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: 400,
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#191C25",
   },
 
   "& .MuiOutlinedInput-root": {
@@ -98,26 +100,15 @@ const TitleWrapper = styled("div")({
   margin: "45px 0px 39px 0px",
 });
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  marginTop: "50px",
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: "11px 16px 12px",
-  gap: "10px",
-  width: "349px",
-  height: "46px",
-  background: "#F1AE0F",
-  borderRadius: "50px",
-  color: "white",
-  ...theme.typography.button,
-}));
 const StyledCircularProgress = styled(CircularProgress)({
   marginTop: "50px",
 });
 
 const CircularProgressWrapper = styled("div")({
   margin: "0 auto",
+});
+
+const StyledButton = styled(Button)({
+  marginTop: "53px",
 });
 export default LoginModal;

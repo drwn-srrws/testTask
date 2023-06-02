@@ -3,39 +3,44 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { styled } from "@mui/system";
 
-export default function BreadCrumbs() {
-  const breadcrumbs = [
-    <StyledLink key="1">Ontario</StyledLink>,
-    <StyledLink key="2">Toronto</StyledLink>,
-    <StyledTypography key="3">22 Sunset Beach Rd</StyledTypography>,
-  ];
+import { FC } from "react";
+import styled from "@emotion/styled";
 
+interface BreadCrumbsProps {
+  breadcrumb: Array<{
+    itemId: string;
+    name: string;
+  }>;
+}
+
+const CustomBreadcrumbs: FC<BreadCrumbsProps> = ({ breadcrumb }) => {
   return (
     <StyledStack spacing={2}>
       <StyledBreadcrumbs
         separator={<NavigateNextIcon fontSize="medium" />}
         aria-label="breadcrumb"
       >
-        {breadcrumbs}
+        {breadcrumb.map((item, index) => (
+          <StyledTypography
+            key={item.itemId}
+            variant="body1"
+            color={
+              index === breadcrumb.length - 1
+                ? "textColor.lightgray"
+                : "textColor.main"
+            }
+          >
+            {item.name}
+          </StyledTypography>
+        ))}
       </StyledBreadcrumbs>
     </StyledStack>
   );
-}
-const StyledLink = styled(Link)({
-  textDecoration: "none",
-  fontFamily: "Lato",
-  fontWeight: "400",
-  fontSize: "16px",
-  lineHeight: "19px",
-  color: "#202A44",
-});
+};
+
 const StyledTypography = styled(Typography)({
-  fontFamily: "Lato",
   fontWeight: "400",
-  fontSize: "16px",
-  color: "#9499A8",
 });
 
 const StyledStack = styled(Stack)({
@@ -48,3 +53,5 @@ const StyledBreadcrumbs = styled(Breadcrumbs)({
     marginRight: "1px",
   },
 });
+
+export default CustomBreadcrumbs;

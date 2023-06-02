@@ -9,7 +9,7 @@ interface StyledChipProps {
 
 const StyledChip = styled(Chip)<StyledChipProps>(({ $color }) => ({
   backgroundColor: $color,
-  padding: "7px 0px 8px",
+  padding: "6px 0px 8px",
   margin: "0px 5px 0px 0px",
   borderRadius: "5px",
   fontFamily: "Lato",

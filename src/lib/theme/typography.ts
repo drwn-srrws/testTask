@@ -6,6 +6,12 @@ export const typography = {
     fontSize: "16px",
     lineHeight: "19.2px",
   },
+  additionalInformation: {
+    fontWeight: "400",
+    fontSize: "16px",
+    lineHeight: "19px",
+    fontFamily: "Lato",
+  },
 
   pageTitle: {
     fontFamily: "Abhaya Libre",

@@ -13,6 +13,7 @@ declare module "@mui/material/Typography" {
     body1: true;
     pageTitle: true;
     homePrice: true;
+    additionalInformation: true;
   }
 }
 declare module "@mui/material/styles" {
@@ -20,12 +21,14 @@ declare module "@mui/material/styles" {
     body1: CSSProperties;
     pageTitle: CSSProperties;
     homePrice: CSSProperties;
+    additionalInformation: CSSProperties;
   }
 
   export interface TypographyVariantsOptions {
     body1?: CSSProperties;
     pageTitle?: CSSProperties;
     homePrice?: CSSProperties;
+    additionalInformation: CSSProperties;
   }
 
   interface CustomPalette {
