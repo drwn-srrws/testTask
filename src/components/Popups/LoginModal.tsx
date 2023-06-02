@@ -1,60 +1,60 @@
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { TextField, styled } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../redux/actions/userActions";
+import { loginUser } from "../../redux/actions/userActions";
 import { CircularProgress } from "@mui/material";
-import { RootState } from "../../../redux/store/store";
+import { RootState } from "../../redux/store/store";
+import PopupLayout from "../../layouts/PopupLayout";
 
-interface BasicModalProps {
+interface LoginModalProps {
   open: boolean;
   setOpen: (value: boolean) => void;
 }
 
-const BasicModal: FC<BasicModalProps> = ({ open, setOpen }) => {
-  const handleClose = () => setOpen(false);
+const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
   const [login, setLogin] = useState({ login: "", password: "" });
   const dispatch = useDispatch();
   const handleLoginClick = () => {
     dispatch(loginUser({ password: login.password, login: login.login }));
   };
-  const isLoading = useSelector((state: RootState) => state.user.isLoading);
+
+  const handleFieldChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setLogin((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  };
+  const { isLoading } = useSelector((state: RootState) => state.user);
+  useEffect(() => {
+    !open && setLogin({ login: "", password: "" });
+  }, [open]);
+
   return (
-    <div>
-      <Modal open={open} onClose={handleClose}>
-        <StyledBox>
-          <Container>
-            <TitleWrapper>
-              <Title>Sign in</Title>
-            </TitleWrapper>
-            <TextFieldName>Email or username</TextFieldName>
-            <StyledTextField
-              placeholder="Enter your email here"
-              onChange={(e) => {
-                setLogin({ ...login, login: e.target.value });
-              }}
-            />
-            <TextFieldName>Password</TextFieldName>
-            <StyledTextField
-              placeholder="Enter your password here"
-              onChange={(e) => {
-                setLogin({ ...login, password: e.target.value });
-              }}
-            />
-            {isLoading ? (
-              <CircularProgressWrapper>
-                <StyledCircularProgress />
-              </CircularProgressWrapper>
-            ) : (
-              <StyledButton onClick={handleLoginClick}>Log In</StyledButton>
-            )}
-          </Container>
-        </StyledBox>
-      </Modal>
-    </div>
+    <PopupLayout open={open} setOpen={setOpen}>
+      <Container>
+        <TitleWrapper>
+          <Title>Sign in</Title>
+        </TitleWrapper>
+        <TextFieldName>Email or username</TextFieldName>
+        <StyledTextField
+          placeholder="Enter your email here"
+          name="login"
+          onChange={handleFieldChange}
+        />
+        <TextFieldName>Password</TextFieldName>
+        <StyledTextField
+          placeholder="Enter your password here"
+          name="password"
+          onChange={handleFieldChange}
+        />
+        {isLoading ? (
+          <CircularProgressWrapper>
+            <StyledCircularProgress />
+          </CircularProgressWrapper>
+        ) : (
+          <StyledButton onClick={handleLoginClick}>Log In</StyledButton>
+        )}
+      </Container>
+    </PopupLayout>
   );
 };
 
@@ -72,17 +72,6 @@ const TextFieldName = styled(Typography)({
   marginBottom: "10px",
 });
 
-const StyledBox = styled(Box)({
-  borderRadius: "30px",
-  width: "435px",
-  height: "471px",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  background: "white",
-  outline: "none",
-});
 const Container = styled("div")({
   display: "flex",
   flexDirection: "column",
@@ -131,4 +120,4 @@ const StyledCircularProgress = styled(CircularProgress)({
 const CircularProgressWrapper = styled("div")({
   margin: "0 auto",
 });
-export default BasicModal;
+export default LoginModal;

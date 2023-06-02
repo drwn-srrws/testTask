@@ -26,3 +26,7 @@ export const updateLoginLoading = ({ isLoading }: updateLoginLoadingProps) => ({
     isLoading,
   },
 });
+
+export const logout = () => ({
+  type: LOGOUT,
+});

@@ -2,18 +2,18 @@ import { Button, Link, Typography, styled } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { useState, useEffect } from "react";
-import BasicModal from "./components/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store/store";
-import { LOGOUT } from "../../redux/actions/userActions";
+import { logout } from "../../redux/actions/userActions";
+import BasicModal from "../Popups/LoginModal";
 
 const NAV_LINKS = [
   {
     text: `Buy & Invest`,
   },
   { text: `Discover Homes` },
-  { text: `Learn`, moreIcon: true },
-  { text: `Company`, moreIcon: true },
+  { text: `Learn`, hasDropdown: true },
+  { text: `Company`, hasDropdown: true },
 ];
 
 const Navigation = () => {
@@ -38,15 +38,13 @@ const Navigation = () => {
           {NAV_LINKS.map((item) => (
             <LinkMenuWrapper key={item.text}>
               <StyledLink sx={styles.link}>{item.text}</StyledLink>
-              {item.moreIcon && <ExpandMoreIcon sx={styles.moreIcon} />}
+              {item.hasDropdown && <ExpandMoreIcon sx={styles.moreIcon} />}
             </LinkMenuWrapper>
           ))}
         </LinksWrapper>
         <AuthorizationWrapper>
           {isAuthorized ? (
-            <StyledLink onClick={() => dispatch({ type: LOGOUT })}>
-              Log Out
-            </StyledLink>
+            <StyledLink onClick={() => dispatch(logout())}>Log Out</StyledLink>
           ) : (
             <>
               <StyledLink onClick={handleModalOpen}>Log In</StyledLink>

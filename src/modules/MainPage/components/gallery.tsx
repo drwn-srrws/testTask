@@ -1,4 +1,3 @@
-import CustomSeparator from "./breadCrumbs";
 import { Button, Link, styled } from "@mui/material";
 const pictures = [
   "/images/Gallery/Rectangle22.png",
@@ -16,7 +15,6 @@ const Gallery = () => {
   return (
     <OuterWrapper>
       <Container>
-        <CustomSeparator />
         <PicturesWrapper>
           {pictures.map((picture, index) =>
             index !== pictures.length - 1 ? (

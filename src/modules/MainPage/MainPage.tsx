@@ -1,6 +1,6 @@
 import PageLayout from "../../layouts/PageLayout";
-import Description from "./components/description";
-import Gallery from "./components/gallery";
+import Description from "./components/Description";
+import Gallery from "./components/Gallery";
 
 const MainPage = () => {
   return (

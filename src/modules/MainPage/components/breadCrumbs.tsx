@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { styled } from "@mui/system";
 
-export default function CustomSeparator() {
+export default function BreadCrumbs() {
   const breadcrumbs = [
     <StyledLink key="1">Ontario</StyledLink>,
     <StyledLink key="2">Toronto</StyledLink>,
